@@ -50,14 +50,14 @@
 (defn day-2 []
   (let [input (get-input "2")
         encoded (map result-convert input)
-        day-1-ints (map to-ints encoded)
-        day-2-ints (map result-convert-2 day-1-ints)
+        part-1-ints (map to-ints encoded)
+        part-2-ints (map result-convert-2 part-1-ints)
         get-result #(->> %
                          (map (juxt calculate-w calculate-p))
                          flatten
                          (apply +))
-        day-1-results (get-result day-1-ints)
-        day-2-results (get-result day-2-ints)]
-    [day-1-results day-2-results]))
+        part-1-results (get-result part-1-ints)
+        part-2-results (get-result part-2-ints)]
+    [part-1-results part-2-results]))
 
 (day-2)
