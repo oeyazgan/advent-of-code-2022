@@ -97,4 +97,32 @@
 (defn day-3 []
   [(day-3-part-1) (day-3-part-2)])
 
-(day-3)
+;; day-4
+(defn overlaps? [[[e00 e01] [e10 e11]]]
+  (cond
+    (> e00 e10) (>= e11 e01)
+    (< e00 e10) (>= e01 e11)
+    :else true))
+
+(defn overlaps-p2? [[[e00 e01] [e10 e11]]]
+  (cond
+    (> e00 e10) (>= e11 e00)
+    (< e00 e10) (>= e01 e10)
+    :else true))
+
+(defn to-ints [[x y]]
+  (let [get-elves #(map read-string (str/split % #"-"))]
+    [(get-elves x) (get-elves y)]))
+
+(defn day-4 []
+  (let [input (get-input "4")
+        split-by-coma #(str/split % #",")
+        get-with-overlap-fn #(map (comp % to-ints split-by-coma) input)
+        overlaps-p1 (get-with-overlap-fn overlaps?)
+        overlaps-p2 (get-with-overlap-fn overlaps-p2?)
+        get-result #(->> % (filter true?) count)
+        result [(get-result overlaps-p1) (get-result overlaps-p2)]]
+    result))
+
+(day-4)
+
