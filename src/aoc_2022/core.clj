@@ -194,7 +194,6 @@
                  (apply str (first (get stacks i))))]
     result))
 
-
 (defn day-5 []
   [(apply str (with-move-func move-single))
    (apply str (with-move-func move-multiple))])
