@@ -29,7 +29,6 @@
                   (into all [(get-tail-new-pos (last all) n)]))]
     (reduce reducer head knots)))
 
-
 (defn get-tail-new-pos [[hnx hny] [tox toy]]
   (let [xdiff (- hnx tox)
         ydiff (- hny toy)
