@@ -1,4 +1,4 @@
-(ns aoc-2022.day-2
+(ns aoc-2022.day-02
   (:require [aoc-2022.core :as core]
             [clojure.string :as str]))
 
@@ -26,7 +26,7 @@
           (= 0 result) 3
           :else 0)))
 
-(defn calculate-p [[_ me]]
+(defn calculate-p [[t me]]
   (cond (= me 0) 1
         (= me 1) 2
         (= me 2) 3

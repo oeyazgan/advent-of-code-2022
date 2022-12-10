@@ -1,4 +1,4 @@
-(ns aoc-2022.day-1
+(ns aoc-2022.day-01
   (:require [aoc-2022.core :as core]))
 
 (defn day-1 []

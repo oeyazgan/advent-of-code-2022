@@ -1,4 +1,4 @@
-(ns aoc-2022.day-8
+(ns aoc-2022.day-08
   (:require [aoc-2022.core :as core]))
 
 ;; part-1

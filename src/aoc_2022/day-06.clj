@@ -1,4 +1,4 @@
-(ns aoc-2022.day-6)
+(ns aoc-2022.day-06)
 
 (defn with-partition [prt]
   (->> (slurp "resources/day-6.txt")
