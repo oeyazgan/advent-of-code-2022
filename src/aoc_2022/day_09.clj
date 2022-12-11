@@ -39,13 +39,8 @@
           (= -2 ydiff)                          [tox (dec toy)]
           :else                                 (throw (Exception. "oh gosh")))))
 
-(defn move-knots
-  "given a head and the knots,
-   move each knot in head-tail pairs"
-  [head knots]
-  (let [reducer (fn [all n]
-                  (into all [(get-tail-new-pos (last all) n)]))]
-    (reduce reducer head knots)))
+(defn move-knots [head knots]
+  (reductions get-tail-new-pos head knots))
 
 (defn get-visited [knot]
   (loop [inp (get-beautiful-input)
@@ -55,7 +50,7 @@
     (if inp
       (let [command (first inp)
             new-head (get-head-new-pos hp command)
-            new-knots (rest (move-knots [new-head] tails))
+            new-knots (rest (move-knots new-head tails))
             new-visited (conj visited (last new-knots))]
         (recur (next inp) new-head new-knots new-visited))
       visited)))
