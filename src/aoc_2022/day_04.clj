@@ -1,6 +1,6 @@
 (ns aoc-2022.day-04
-   (:require [aoc-2022.core :as core]
-             [clojure.string :as str]))
+  (:require [aoc-2022.core :as core]
+            [clojure.string :as str]))
 
 (defn overlaps? [[[e00 e01] [e10 e11]]]
   (cond
@@ -28,3 +28,4 @@
         result [(get-result overlaps-p1) (get-result overlaps-p2)]]
     result))
 
+(day-4)

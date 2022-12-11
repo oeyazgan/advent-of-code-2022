@@ -12,7 +12,7 @@
           (= pth "/") {:cur-path ""
                        :directories directories}
           :else {:cur-path (apply str (concat cur-path "/" pth))
-                  :directories directories})))
+                 :directories directories})))
 
 (defmethod parse-by "dir " [{:keys [command cur-path directories]}]
   (let [folder (-> command (str/split #" ") second)

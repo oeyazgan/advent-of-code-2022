@@ -3,8 +3,9 @@
             [clojure.string :as str]))
 
 ;; day-9
-(defn input-beautifier [input-row]
+(defn input-beautifier
   "from U 4 to U U U U"
+  [input-row]
   (let [parsed (-> input-row (str/split #" "))
         to-int (-> parsed second read-string)
         build-seq (repeat to-int (first parsed))]
@@ -22,28 +23,29 @@
           "D" [hox (dec hoy)])]
     [hnx hny]))
 
-(defn move-knots [head knots]
-  "given a head and the knots,
-   move each knot in head-tail pairs"
-  (let [reducer (fn [all n]
-                  (into all [(get-tail-new-pos (last all) n)]))]
-    (reduce reducer head knots)))
-
 (defn get-tail-new-pos [[hnx hny] [tox toy]]
-  (let [xdiff (- hnx tox)
-        ydiff (- hny toy)
+  (let [xdiff     (- hnx tox)
+        ydiff     (- hny toy)
         xdiff-abs (Math/abs xdiff)
         ydiff-abs (Math/abs ydiff)]
     (cond (and (< xdiff-abs 2) (< ydiff-abs 2)) [tox toy]
-          (and (> xdiff 0) (> ydiff 0)) [(inc tox) (inc toy)]
-          (and (< xdiff 0) (> ydiff 0)) [(dec tox) (inc toy)]
-          (and (< xdiff 0) (< ydiff 0)) [(dec tox) (dec toy)]
-          (and (> xdiff 0) (< ydiff 0)) [(inc tox) (dec toy)]
-          (= 2 xdiff) [(inc tox) toy]
-          (= -2 xdiff) [(dec tox) toy]
-          (= 2 ydiff) [tox (inc toy)]
-          (= -2 ydiff) [tox (dec toy)]
-          :else (throw (Exception. "oh gosh")))))
+          (and (> xdiff 0) (> ydiff 0))         [(inc tox) (inc toy)]
+          (and (< xdiff 0) (> ydiff 0))         [(dec tox) (inc toy)]
+          (and (< xdiff 0) (< ydiff 0))         [(dec tox) (dec toy)]
+          (and (> xdiff 0) (< ydiff 0))         [(inc tox) (dec toy)]
+          (= 2 xdiff)                           [(inc tox) toy]
+          (= -2 xdiff)                          [(dec tox) toy]
+          (= 2 ydiff)                           [tox (inc toy)]
+          (= -2 ydiff)                          [tox (dec toy)]
+          :else                                 (throw (Exception. "oh gosh")))))
+
+(defn move-knots
+  "given a head and the knots,
+   move each knot in head-tail pairs"
+  [head knots]
+  (let [reducer (fn [all n]
+                  (into all [(get-tail-new-pos (last all) n)]))]
+    (reduce reducer head knots)))
 
 (defn get-visited [knot]
   (loop [inp (get-beautiful-input)

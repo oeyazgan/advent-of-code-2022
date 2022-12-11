@@ -1,6 +1,6 @@
 (ns aoc-2022.day-05
-   (:require [aoc-2022.core :as core]
-             [clojure.string :as str]))
+  (:require
+   [clojure.string :as str]))
 
 (def input-day-5
   (-> (slurp "resources/day-5.txt")
@@ -8,20 +8,20 @@
 
 (def stacks
   (let
-      [raw-input
-       (-> input-day-5
-           first
-           (str/split #"\n")
-           drop-last)
-       stack-count (inc (quot (count (first raw-input)) 4))
-       indices (take stack-count (iterate (partial + 4) 1))
-       stacks
-       (for [i indices]
-         (map #(let [v (str (nth % i))]
-                 (when-not (= v " ") v))
-              raw-input))
-       filtered (map #(filter some? %) stacks)
-       to-map (into {} (for [i (range stack-count)] [i (nth filtered i)]))]
+   [raw-input
+    (-> input-day-5
+        first
+        (str/split #"\n")
+        drop-last)
+    stack-count (inc (quot (count (first raw-input)) 4))
+    indices (take stack-count (iterate (partial + 4) 1))
+    stacks
+    (for [i indices]
+      (map #(let [v (str (nth % i))]
+              (when-not (= v " ") v))
+           raw-input))
+    filtered (map #(filter some? %) stacks)
+    to-map (into {} (for [i (range stack-count)] [i (nth filtered i)]))]
     {:stacks to-map :stack-count stack-count}))
 
 (def moves
@@ -72,5 +72,3 @@
    (apply str (with-move-func move-multiple))])
 
 (day-5)
-
-

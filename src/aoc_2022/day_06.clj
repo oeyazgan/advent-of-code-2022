@@ -5,7 +5,7 @@
        (partition prt 1)
        (map (comp count #(apply hash-set %)))
        (map-indexed vector)
-       (drop-while (fn [[x y]] (not= y prt)))
+       (drop-while (fn [[_ y]] (not= y prt)))
        (#((comp (partial + prt) first first) %))))
 
 (defn day-6 []
